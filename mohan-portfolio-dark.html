@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohan Podili Srihari Naidu · Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050505;
+      --bg-elevated: #151515;
+      --bg-soft: #1f1f1f;
+      --border-soft: #2b2b2b;
+      --text-main: #ffffff;
+      --text-muted: #b5b5b5;
+      --accent: #ff7a00;
+      --accent-soft: rgba(255, 122, 0, 0.14);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.75);
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+    }
+
+    img { max-width: 100%; display: block; height: auto; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 24px;
+      border-radius: 32px;
+      background: radial-gradient(circle at top left, #2a2a2a 0, #101010 55%);
+      border: 1px solid #333333;
+      box-shadow: var(--shadow-soft);
+    }
+
+    header.site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 4px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    nav.primary-nav {
+      display: flex;
+      gap: 32px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    nav.primary-nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav.primary-nav a.active,
+    nav.primary-nav a:hover {
+      color: var(--accent);
+    }
+
+    nav.primary-nav a.active::after,
+    nav.primary-nav a:hover::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #111;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 12px 26px rgba(255, 122, 0, 0.55);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 40px;
+      padding: 32px 0 20px;
+      align-items: center;
+    }
+
+    .hero-greeting {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .hero-name {
+      font-size: 26px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .hero-role {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      max-width: 420px;
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 22px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .btn-primary {
+      padding: 11px 28px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #111;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 26px rgba(255, 122, 0, 0.6);
+    }
+
+    .btn-ghost {
+      padding: 10px 26px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: transparent;
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      min-width: 140px;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+      font-size: 14px;
+    }
+
+    .stat-number { color: var(--accent); font-weight: 600; margin-bottom: 4px; }
+    .stat-label { color: var(--text-muted); font-size: 13px; }
+
+    .hero-photo-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-photo-circle {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 0, rgba(255,122,0,0.25), rgba(0,0,0,0.9));
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-initials {
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f5f5f5;
+    }
+
+    main { margin-top: 24px; }
+
+    section.section {
+      margin-top: 40px;
+      padding: 28px 26px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-soft);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 18px 16px;
+      border-radius: var(--radius-md);
+      background: var(--bg-soft);
+      border: 1px solid #2a2a2a;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .service-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .about-text strong { color: var(--accent); font-weight: 500; }
+
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #181818;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .portfolio-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .filter-pill {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .filter-pill.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #111;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      border-radius: var(--radius-md);
+      background: var(--bg-soft);
+      border: 1px solid #2a2a2a;
+      padding: 16px 16px 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .project-name { font-weight: 500; color: var(--text-main); margin-bottom: 4px; }
+    .project-meta { font-size: 12px; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+
+    .project-tag {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid #333;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .contact-list { font-size: 14px; color: var(--text-muted); display: grid; gap: 10px; }
+
+    .contact-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-muted); }
+
+    .contact-form { display: grid; gap: 14px; }
+
+    .field { display: grid; gap: 6px; font-size: 13px; }
+
+    .field label { font-size: 12px; color: var(--text-muted); }
+
+    .input, .textarea, select {
+      border-radius: 999px;
+      border: 1px solid #323232;
+      background: #191919;
+      padding: 10px 14px;
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+    }
+
+    .textarea {
+      border-radius: 14px;
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .input::placeholder, .textarea::placeholder { color: #666; }
+
+    footer.site-footer {
+      margin-top: 32px;
+      padding: 18px 20px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-soft);
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .footer-nav { display: flex; justify-content: center; gap: 24px; margin-bottom: 10px; font-size: 13px; }
+
+    .footer-socials { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    @media (max-width: 900px) {
+      .page { margin: 16px; padding: 18px; }
+      header.site-header { flex-wrap: wrap; gap: 16px; }
+      nav.primary-nav { flex-wrap: wrap; justify-content: center; }
+      .hero { grid-template-columns: minmax(0, 1fr); text-align: left; }
+      .hero-photo-wrapper { order: -1; margin-bottom: 12px; }
+      .hero-photo-circle { width: 260px; height: 260px; }
+      .about-layout { grid-template-columns: minmax(0, 1fr); }
+      .contact-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <a href="#home" class="sr-only">Skip to content</a>
+  <div class="page">
+    <header class="site-header">
+      <div class="brand">MOHAN</div>
+      <nav class="primary-nav" aria-label="Main">
+        <a href="#home" class="active">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About me</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact me</a>
+      </nav>
+      <a href="#contact" class="header-cta">Hire Me</a>
+    </header>
+
+    <section id="home" class="hero" aria-label="Hero">
+      <div>
+        <p class="hero-greeting">Hi, I am</p>
+        <p class="hero-name">Mohan Podili Srihari Naidu</p>
+        <p class="hero-role">Software Engineer</p>
+        <p class="hero-subtitle">Grad student at Arizona State University building full‑stack experiences on AWS and applying machine learning to real‑world problems.</p>
+        <div class="hero-socials">
+          <span>React · AWS · Python · ML</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary" role="button">Hire Me</a>
+          <a href="MPS_2025NEW.pdf" class="btn-ghost" target="_blank" rel="noopener noreferrer">Download CV</a>
+        </div>
+        <div class="hero-stats" aria-label="Quick stats">
+          <div class="stat-card">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Academic &amp; industry projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2+</div>
+            <div class="stat-label">Years working with ML &amp; data</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2025</div>
+            <div class="stat-label">M.S. CS graduation (ASU)</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-photo-wrapper" aria-hidden="true">
+        <div class="hero-photo-circle">
+          <div class="hero-initials">MN</div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section id="services" class="section" aria-labelledby="services-heading">
+        <h2 id="services-heading" class="section-title">Services</h2>
+        <p class="section-subtitle">How I can help your team ship reliable, data‑driven products.</p>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">👨‍💻</div>
+            <h3 class="service-title">Full‑stack web development</h3>
+            <p>Building responsive dashboards and web apps with React, clean HTML/CSS, and well‑structured APIs.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">☁️</div>
+            <h3 class="service-title">Cloud‑native solutions</h3>
+            <p>Designing and maintaining AWS Lambda‑backed services, integrating front‑end workflows with scalable backends.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">📊</div>
+            <h3 class="service-title">Machine learning &amp; analytics</h3>
+            <p>Prototyping and evaluating ML models for customer segmentation, risk prediction, and content safety.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🧪</div>
+            <h3 class="service-title">Data‑driven experimentation</h3>
+            <p>Cleaning data, engineering features, and running experiments to back product decisions with evidence.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="section" aria-labelledby="about-heading">
+        <h2 id="about-heading" class="section-title">About Me</h2>
+        <p class="section-subtitle">Software engineer with a blend of full‑stack, cloud, and ML experience.</p>
+        <div class="about-layout">
+          <div>
+            <div class="hero-photo-circle" aria-hidden="true" style="margin: 0 auto 16px auto; width: 260px; height: 260px;">
+              <div class="hero-initials" style="font-size: 52px;">MN</div>
+            </div>
+          </div>
+          <div class="about-text">
+            <p>I’m currently pursuing my <strong>M.S. in Computer Science at Arizona State University</strong>, with coursework in Data Processing at Scale, Applied Cryptography, and Semantic Web Mining.</p>
+            <br />
+            <p>As an <strong>AWS Developer at School Fuel</strong>, I work on React‑based student and teacher dashboards for the Kairos platform, collaborating closely with backend teams to debug APIs, refine JSON contracts, and ensure reliable data flows across AWS Lambda services.</p>
+            <br />
+            <p>Previously, as an <strong>AI &amp; ML Intern at Tequed Labs</strong>, I built machine learning models using Random Forests, SVMs, Linear Regression, and k‑means clustering to better understand customer behavior and improve segmentation.</p>
+            <div class="chips-row">
+              <span class="chip">React · JavaScript</span>
+              <span class="chip">Python · ML</span>
+              <span class="chip">AWS Lambda</span>
+              <span class="chip">SQL · Oracle DB</span>
+              <span class="chip">Tableau</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="section" aria-labelledby="portfolio-heading">
+        <h2 id="portfolio-heading" class="section-title">Portfolio</h2>
+        <p class="section-subtitle">Selected projects that showcase how I design systems and apply machine learning.</p>
+        <div class="portfolio-filters" aria-hidden="true">
+          <span class="filter-pill active">All</span>
+          <span class="filter-pill">Web applications</span>
+          <span class="filter-pill">IoT &amp; vision</span>
+          <span class="filter-pill">ML &amp; NLP</span>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-meta">Full‑stack · Web</div>
+            <h3 class="project-name">Evaluation &amp; Feedback System</h3>
+            <p>Responsive web application built with HTML, CSS, JavaScript, PHP, and MySQL to streamline course feedback workflows in educational institutions.</p>
+            <div class="project-tags">
+              <span class="project-tag">HTML/CSS/JS</span>
+              <span class="project-tag">PHP</span>
+              <span class="project-tag">MySQL</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-meta">IoT · Computer vision</div>
+            <h3 class="project-name">Driver Drowsiness Detection</h3>
+            <p>Raspberry‑Pi‑based system with night‑vision camera and Haar cascade classifiers using Eye Aspect Ratio to detect driver drowsiness and trigger alerts.</p>
+            <div class="project-tags">
+              <span class="project-tag">Raspberry Pi</span>
+              <span class="project-tag">OpenCV</span>
+              <span class="project-tag">Real‑time alerts</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-meta">ML · Healthcare</div>
+            <h3 class="project-name">Secure Patient Services</h3>
+            <p>Integrated Random Forests, Gradient Boosting, SVMs, and Neural Networks for disease risk prediction and built a blockchain framework for secure patient data sharing.</p>
+            <div class="project-tags">
+              <span class="project-tag">Machine learning</span>
+              <span class="project-tag">Blockchain</span>
+              <span class="project-tag">Healthcare</span>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-meta">NLP · Security</div>
+            <h3 class="project-name">Beyond BERT: Fake Review Detection</h3>
+            <p>Developed FakeRoBERTa and BERT‑based models with strong precision/recall for detecting computer‑generated reviews, using SMOTE and detailed evaluation.</p>
+            <div class="project-tags">
+              <span class="project-tag">BERT/RoBERTa</span>
+              <span class="project-tag">NLP</span>
+              <span class="project-tag">Content safety</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" class="section-title">Contact me</h2>
+        <p class="section-subtitle">Cultivating connections: reach out and connect with me.</p>
+        <div class="contact-grid">
+          <div>
+            <p class="contact-list">If you’re looking for a developer who enjoys owning features end‑to‑end, collaborating across teams, and working at the intersection of web, cloud, and ML, I’d love to hear from you.</p>
+            <div style="margin-top: 18px;" class="contact-list">
+              <div>
+                <div class="contact-label">Email</div>
+                <div><a href="mailto:mpodilis@asu.edu">mpodilis@asu.edu</a></div>
+              </div>
+              <div>
+                <div class="contact-label">Phone</div>
+                <div><a href="tel:+16232735240">+1 (623) 273‑5240</a></div>
+              </div>
+              <div>
+                <div class="contact-label">Links</div>
+                <div>LinkedIn: <a href="https://linkedin.com/in/mohan-ps" target="_blank" rel="noopener noreferrer">/in/mohan-ps</a></div>
+                <div>GitHub: <a href="https://github.com/MohanPS10" target="_blank" rel="noopener noreferrer">MohanPS10</a></div>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form" action="mailto:mpodilis@asu.edu" method="post" enctype="text/plain">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" class="input" type="text" name="name" placeholder="Your name" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" class="input" type="email" name="email" placeholder="you@example.com" />
+            </div>
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input id="phone" class="input" type="tel" name="phone" placeholder="Optional" />
+            </div>
+            <div class="field">
+              <label for="service">Service of interest</label>
+              <select id="service" name="service" class="input">
+                <option value="Full‑stack web development">Full‑stack web development</option>
+                <option value="Cloud &amp; AWS">Cloud &amp; AWS</option>
+                <option value="ML &amp; data">ML &amp; data</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="timeline">Timeline</label>
+              <input id="timeline" class="input" type="text" name="timeline" placeholder="When do you want to start?" />
+            </div>
+            <div class="field">
+              <label for="message">Project details</label>
+              <textarea id="message" class="textarea" name="message" placeholder="Share a few lines about the role, project, or idea."></textarea>
+            </div>
+            <div style="text-align: right; margin-top: 4px;">
+              <button type="submit" class="btn-ghost" style="border-color: var(--accent);">Send</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="brand" style="font-size: 16px; margin-bottom: 6px;">MOHAN</div>
+      <div class="footer-nav">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About me</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact me</a>
+      </div>
+      <div class="footer-socials">
+        <span>LinkedIn</span>
+        <span>GitHub</span>
+      </div>
+      <div style="margin-bottom: 4px;">Email: <a href="mailto:mpodilis@asu.edu">mpodilis@asu.edu</a> · Phone: <a href="tel:+16232735240">+1 (623) 273‑5240</a></div>
+      <div style="font-size: 12px;">Designed for Mohan Podili Srihari Naidu · Software Engineer</div>
+    </footer>
+  </div>
+</body>
+</html>

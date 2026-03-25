@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Mohan Podili Srihari Naidu — Software Engineer specializing in Full-Stack, AWS Cloud, and Machine Learning." />
+  <title>Mohan Podili · Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: rgb(5, 8, 16);
+      --gold: rgb(255, 215, 0);
+      --blue: rgb(37, 99, 235);
+      --blue-light: rgb(59, 130, 246);
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+      --card-bg: rgba(0, 0, 0, 0.4);
+      --card-border: rgba(37, 99, 235, 0.2);
+      --card-bg-hover: rgba(37, 99, 235, 0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Rajdhani', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── CANVAS PARTICLES ─── */
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav.main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.15);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .logo-box {
+      width: 36px;
+      height: 36px;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: 0;
+    }
+
+    .logo-text { color: var(--text-main); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-size: 15px;
+      color: var(--text-muted);
+      list-style: none;
+    }
+
+    .nav-links a {
+      transition: color 0.2s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .btn-hire-nav {
+      padding: 9px 24px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-hire-nav:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
+    /* ─── WRAPPER ─── */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      padding-top: 80px;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section { padding: 90px 60px; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+
+    .gold { color: var(--gold); }
+
+    .blue-grad {
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stars {
+      display: inline-flex;
+      gap: 2px;
+      color: var(--gold);
+      font-size: 14px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ─── HERO TOTY BADGE ─── */
+    .toty-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(37,99,235,0.15);
+      border: 1px solid rgba(37,99,235,0.3);
+      border-radius: 99px;
+      padding: 7px 18px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+    }
+    .toty-badge-star { color: var(--gold); font-size: 16px; }
+    .toty-badge-label { color: var(--gold); text-transform: uppercase; letter-spacing: 0.15em; }
+    .toty-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: rgb(34,197,94); }
+    .toty-badge-avail { color: var(--text-muted); font-size: 13px; text-transform: none; letter-spacing: 0.02em; }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 60px 60px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-text-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-name {
+      font-size: 80px;
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero-role {
+      font-size: 22px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 13px 34px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(37,99,235,0.5);
+    }
+
+    .btn-outline {
+      padding: 12px 32px;
+      border-radius: 4px;
+      border: 2px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    /* ─── FIFA PLAYER CARD ─── */
+    .player-card-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .player-card {
+      width: 280px;
+      height: 400px;
+      position: relative;
+      background: linear-gradient(160deg, #0a1628 0%, #050810 40%, #020408 100%);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(255,215,0,0.2), inset 0 0 60px rgba(37,99,235,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .player-card:hover {
+      transform: translateY(-8px) rotateY(3deg);
+      box-shadow: 0 0 60px rgba(255,215,0,0.35), inset 0 0 60px rgba(255,215,0,0.06);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      text-align: center;
+    }
+
+    .card-badge .rating {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .card-badge .pos {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .card-toty {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 2px 6px;
+    }
+
+    .card-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(79,172,254,0.3));
+      border: 2px solid rgba(255,215,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .card-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .card-divider {
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    .card-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px 12px;
+      width: 100%;
+    }
+
+    .card-stat {
+      text-align: center;
+    }
+
+    .card-stat-num {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .card-stat-label {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: rgba(255,215,0,0.7);
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: rgba(255,255,255,0.01);
+    }
+
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .player-card-about {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .player-card-about .player-card {
+      width: 100%;
+      height: auto;
+      padding-bottom: 24px;
+    }
+
+    .about-text {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    .about-text p { margin-bottom: 20px; }
+    .about-text strong { color: var(--text-main); font-weight: 600; }
+
+    /* ─── SKILLS ─── */
+    #skills {
+      background: rgba(0,0,0,0.2);
+    }
+
+    .skills-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .skills-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 24px;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+
+    .skill-card:hover {
+      border-color: rgba(255,215,0,0.5);
+      background: var(--card-bg-hover);
+      transform: translateY(-4px);
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .skill-icon-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .skill-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .skill-name {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .skill-pct {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .skill-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--gold));
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects {
+      background: rgba(255,255,255,0.01);
+    }
+
+    .projects-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .projects-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 28px;
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--gold));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(255,215,0,0.4);
+      background: var(--card-bg-hover);
+      transform: translateY(-6px);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-meta-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .project-date {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .project-accuracy {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(255,215,0,0.08);
+      border: 1px solid rgba(255,215,0,0.25);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .project-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .project-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .project-tag {
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,215,0,0.25);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      background: rgba(255,215,0,0.06);
+    }
+
+    .project-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding-top 0.3s;
+    }
+
+    .project-card.expanded .project-details {
+      max-height: 300px;
+      padding-top: 16px;
+    }
+
+    .project-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      border-top: 1px solid rgba(255,215,0,0.15);
+      padding-top: 16px;
+    }
+
+
+    .detail-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .detail-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .project-expand-hint {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    #experience {
+      background: rgba(0,0,0,0.2);
+    }
+
+    .experience-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .experience-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .timeline {
+      position: relative;
+      padding: 0 0 20px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold), rgba(255,215,0,0.1));
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr 40px 1fr;
+      gap: 0;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-card {
+      grid-column: 1;
+      text-align: right;
+      padding-right: 40px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-spacer {
+      grid-column: 2;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-empty {
+      grid-column: 3;
+    }
+
+    .timeline-item:nth-child(even) .timeline-empty {
+      grid-column: 1;
+    }
+
+    .timeline-item:nth-child(even) .timeline-spacer {
+      grid-column: 2;
+    }
+
+    .timeline-item:nth-child(even) .timeline-card {
+      grid-column: 3;
+      text-align: left;
+      padding-left: 40px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 12px rgba(255,215,0,0.6);
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .timeline-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 22px 24px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .timeline-card:hover {
+      border-color: rgba(255,215,0,0.4);
+      background: var(--card-bg-hover);
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .timeline-title {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .timeline-org {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: rgba(255,255,255,0.01);
+    }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .contact-cards {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+
+    .contact-card:hover {
+      border-color: rgba(255,215,0,0.4);
+      background: var(--card-bg-hover);
+      transform: translateX(5px);
+    }
+
+    .contact-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 8px;
+      background: rgba(255,215,0,0.08);
+      border: 1px solid rgba(255,215,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .contact-card-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-card-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .contact-cta {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .contact-cta h3 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .contact-cta p {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .btn-send-email {
+      width: 100%;
+      padding: 15px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s, transform 0.2s;
+      text-align: center;
+      display: block;
+    }
+
+    .btn-send-email:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer.site-footer {
+      border-top: 1px solid rgba(255,215,0,0.1);
+      padding: 30px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-links a { transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      section { padding: 70px 30px; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; padding: 0 20px; }
+      .hero-name { font-size: 46px; }
+      .player-card-wrapper { order: -1; margin-bottom: 20px; }
+      .about-content { grid-template-columns: 1fr; }
+      .player-card-about { max-width: 280px; margin: 0 auto 30px; }
+      .timeline::before { left: 20px; }
+      .timeline-item { grid-template-columns: 40px 1fr; }
+      .timeline-item:nth-child(odd) .timeline-card,
+      .timeline-item:nth-child(even) .timeline-card {
+        grid-column: 2;
+        text-align: left;
+        padding: 22px 24px;
+      }
+      .timeline-item:nth-child(odd) .timeline-spacer,
+      .timeline-item:nth-child(even) .timeline-spacer { grid-column: 1; }
+      .timeline-item:nth-child(odd) .timeline-empty,
+      .timeline-item:nth-child(even) .timeline-empty { display: none; }
+      .timeline-dot { left: 20px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      footer.site-footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      nav.main-nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+      .hero-name { font-size: 38px; }
+      .section-title { font-size: 32px; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- PARTICLE CANVAS -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- NAV -->
+  <nav class="main-nav">
+    <div class="nav-logo">
+      <div class="logo-box">MN</div>
+      <span class="logo-text">MOHAN PS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home" class="active" id="nav-home">Home</a></li>
+      <li><a href="#about" id="nav-about">About</a></li>
+      <li><a href="#skills" id="nav-skills">Skills</a></li>
+      <li><a href="#projects" id="nav-projects">Projects</a></li>
+      <li><a href="#experience" id="nav-experience">Experience</a></li>
+      <li><a href="#contact" id="nav-contact">Contact</a></li>
+    </ul>
+    <a href="mailto:mpodilis@asu.edu" class="btn-hire-nav" id="cta-hire">Hire Me</a>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- ─── HERO ─── -->
+    <section id="home">
+      <div class="hero-inner">
+        <div class="hero-text-col">
+          <div class="toty-badge">
+            <span class="toty-badge-star">★</span>
+            <span class="toty-badge-label">Team of the Year</span>
+            <span class="toty-badge-dot"></span>
+            <span class="toty-badge-avail">Available for opportunities</span>
+          </div>
+          <h1 class="hero-name">
+            Hi, I'm <span class="blue-grad">Mohan</span> <span class="gold">Podili</span>
+          </h1>
+          <p class="hero-role">Software Engineer | Full-Stack | AWS | Machine Learning</p>
+          <p class="hero-desc">Grad student at Arizona State University building full-stack experiences on AWS and applying machine learning to real-world problems.</p>
+          <div class="hero-btns" style="justify-content:center;">
+            <a href="mailto:mpodilis@asu.edu" class="btn-primary" id="btn-hire">Hire Me</a>
+            <a href="MPS_2025NEW.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" id="btn-cv">Download CV</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ABOUT ─── -->
+    <section id="about">
+      <div class="about-inner">
+        <div class="about-header">
+          <div class="section-label">ABOUT ME</div>
+          <h2 class="section-title">Meet the <span class="gold">Player</span><span class="stars">★★★★★</span></h2>
+        </div>
+        <div class="about-content">
+          <div class="player-card-about">
+            <div class="player-card" style="width:100%; height:auto; padding-bottom:24px;">
+              <div class="card-badge">
+                <div class="rating">99</div>
+                <div class="pos">SWE</div>
+              </div>
+              <div class="card-toty">TOTY</div>
+              <div class="card-avatar">MN</div>
+              <div class="card-name">MOHAN PS</div>
+              <div class="card-divider"></div>
+              <div class="card-stats-grid">
+                <div class="card-stat">
+                  <div class="card-stat-num">5+</div>
+                  <div class="card-stat-label">Projects</div>
+                </div>
+                <div class="card-stat">
+                  <div class="card-stat-num">2+</div>
+                  <div class="card-stat-label">Yrs ML</div>
+                </div>
+                <div class="card-stat">
+                  <div class="card-stat-num">3.87</div>
+                  <div class="card-stat-label">GPA</div>
+                </div>
+                <div class="card-stat">
+                  <div class="card-stat-num">95%</div>
+                  <div class="card-stat-label">ML Acc</div>
+                </div>
+                <div class="card-stat">
+                  <div class="card-stat-num">AWS</div>
+                  <div class="card-stat-label">Cloud</div>
+                </div>
+                <div class="card-stat">
+                  <div class="card-stat-num">React</div>
+                  <div class="card-stat-label">Frontend</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-text">
+            <p>I'm currently pursuing my <strong>M.S. in Computer Science at Arizona State University</strong>, with coursework in Data Processing at Scale, Applied Cryptography, and Semantic Web Mining.</p>
+            <p>As an <strong>AWS Developer at School Fuel</strong>, I work on React-based student and teacher dashboards for the Kairos platform, collaborating closely with backend teams to debug APIs, refine JSON contracts, and ensure reliable data flows across AWS Lambda services.</p>
+            <p>Previously, as an <strong>AI & ML Intern at Tequed Labs</strong>, I built machine learning models using Random Forests, SVMs, Linear Regression, and k-means clustering to better understand customer behavior and improve segmentation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SKILLS ─── -->
+    <section id="skills">
+      <div class="skills-inner">
+        <div class="skills-header">
+          <div class="section-label">WHAT I KNOW</div>
+          <h2 class="section-title">Technical <span class="gold">Arsenal</span></h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card" data-skill="95">
+            <div class="skill-header">
+              <div class="skill-icon-name">
+                <div class="skill-icon">🐍</div>
+                <span class="skill-name">Python</span>
+              </div>
+              <span class="skill-pct">95</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+          </div>
+          <div class="skill-card" data-skill="90">
+            <div class="skill-header">
+              <div class="skill-icon-name">
+                <div class="skill-icon">⚛️</div>
+                <span class="skill-name">React</span>
+              </div>
+              <span class="skill-pct">90</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+          </div>
+          <div class="skill-card" data-skill="85">
+            <div class="skill-header">
+              <div class="skill-icon-name">
+                <div class="skill-icon">☁️</div>
+                <span class="skill-name">AWS Lambda</span>
+              </div>
+              <span class="skill-pct">85</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+          </div>
+          <div class="skill-card" data-skill="92">
+            <div class="skill-header">
+              <div class="skill-icon-name">
+                <div class="skill-icon">🤖</div>
+                <span class="skill-name">Machine Learning</span>
+              </div>
+              <span class="skill-pct">92</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+          </div>
+          <div class="skill-card" data-skill="88">
+            <div class="skill-header">
+              <div class="skill-icon-name">
+                <div class="skill-icon">🗄️</div>
+                <span class="skill-name">SQL & MongoDB</span>
+              </div>
+              <span class="skill-pct">88</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+          </div>
+          <div class="skill-card" data-skill="80">
+            <div class="skill-header">
+              <div class="skill-icon-name">
+                <div class="skill-icon">🧠</div>
+                <span class="skill-name">TensorFlow</span>
+              </div>
+              <span class="skill-pct">80</span>
+            </div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PROJECTS ─── -->
+    <section id="projects">
+      <div class="projects-inner">
+        <div class="projects-header">
+          <div class="section-label">WHAT I'VE BUILT</div>
+          <h2 class="section-title">Featured <span class="gold">Projects</span></h2>
+        </div>
+        <div class="projects-grid">
+
+          <div class="project-card" onclick="toggleProject(this)" id="proj-bert">
+            <div class="project-meta-top">
+              <span class="project-date">May 2024</span>
+              <span class="project-accuracy">98.25% Accuracy</span>
+            </div>
+            <h3 class="project-name">Beyond BERT: Fake Review Detection</h3>
+            <p class="project-desc">Developed FakeRoBERTa and BERT-based models with strong precision/recall for detecting computer-generated reviews, using SMOTE and detailed evaluation.</p>
+            <div class="project-tags">
+              <span class="project-tag">BERT/RoBERTa</span>
+              <span class="project-tag">NLP</span>
+              <span class="project-tag">SMOTE</span>
+              <span class="project-tag">Python</span>
+            </div>
+            <div class="project-details">
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="detail-label">Precision</div>
+                  <div class="detail-value">97.8%</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Recall</div>
+                  <div class="detail-value">98.7%</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Model</div>
+                  <div class="detail-value">RoBERTa</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Domain</div>
+                  <div class="detail-value">Content Safety</div>
+                </div>
+              </div>
+            </div>
+            <div class="project-expand-hint" style="margin-top:14px;">Click to expand ↓</div>
+          </div>
+
+          <div class="project-card" onclick="toggleProject(this)" id="proj-patient">
+            <div class="project-meta-top">
+              <span class="project-date">Oct 2023</span>
+              <span class="project-accuracy">Healthcare ML</span>
+            </div>
+            <h3 class="project-name">Secure Patient Services</h3>
+            <p class="project-desc">Integrated Random Forests, Gradient Boosting, SVMs, and Neural Networks for disease risk prediction and built a blockchain framework for secure patient data sharing.</p>
+            <div class="project-tags">
+              <span class="project-tag">ML Algorithms</span>
+              <span class="project-tag">Blockchain</span>
+              <span class="project-tag">Healthcare</span>
+              <span class="project-tag">Python</span>
+            </div>
+            <div class="project-details">
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="detail-label">Models Used</div>
+                  <div class="detail-value">4 ML Models</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Security</div>
+                  <div class="detail-value">Blockchain</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Domain</div>
+                  <div class="detail-value">Healthcare</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Language</div>
+                  <div class="detail-value">Python</div>
+                </div>
+              </div>
+            </div>
+            <div class="project-expand-hint" style="margin-top:14px;">Click to expand ↓</div>
+          </div>
+
+          <div class="project-card" onclick="toggleProject(this)" id="proj-driver">
+            <div class="project-meta-top">
+              <span class="project-date">2022</span>
+              <span class="project-accuracy">IoT Vision</span>
+            </div>
+            <h3 class="project-name">Driver Drowsiness Detection</h3>
+            <p class="project-desc">Raspberry Pi-based system with night-vision camera and Haar cascade classifiers using Eye Aspect Ratio to detect driver drowsiness and trigger real-time alerts.</p>
+            <div class="project-tags">
+              <span class="project-tag">Raspberry Pi</span>
+              <span class="project-tag">OpenCV</span>
+              <span class="project-tag">IoT</span>
+              <span class="project-tag">Real-time</span>
+            </div>
+            <div class="project-details">
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="detail-label">Hardware</div>
+                  <div class="detail-value">Raspberry Pi</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Algorithm</div>
+                  <div class="detail-value">Haar Cascade</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Camera</div>
+                  <div class="detail-value">Night Vision</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Response</div>
+                  <div class="detail-value">Real-time</div>
+                </div>
+              </div>
+            </div>
+            <div class="project-expand-hint" style="margin-top:14px;">Click to expand ↓</div>
+          </div>
+
+          <div class="project-card" onclick="toggleProject(this)" id="proj-eval">
+            <div class="project-meta-top">
+              <span class="project-date">2022</span>
+              <span class="project-accuracy">Full-Stack</span>
+            </div>
+            <h3 class="project-name">Evaluation & Feedback System</h3>
+            <p class="project-desc">Responsive web application built with HTML, CSS, JavaScript, PHP, and MySQL to streamline course feedback workflows in educational institutions.</p>
+            <div class="project-tags">
+              <span class="project-tag">HTML/CSS/JS</span>
+              <span class="project-tag">PHP</span>
+              <span class="project-tag">MySQL</span>
+              <span class="project-tag">Web</span>
+            </div>
+            <div class="project-details">
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="detail-label">Frontend</div>
+                  <div class="detail-value">HTML/CSS/JS</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Backend</div>
+                  <div class="detail-value">PHP</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Database</div>
+                  <div class="detail-value">MySQL</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="detail-label">Type</div>
+                  <div class="detail-value">Educational</div>
+                </div>
+              </div>
+            </div>
+            <div class="project-expand-hint" style="margin-top:14px;">Click to expand ↓</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── EXPERIENCE ─── -->
+    <section id="experience">
+      <div class="experience-inner">
+        <div class="experience-header">
+          <div class="section-label">MY JOURNEY</div>
+          <h2 class="section-title">Career <span class="gold">Timeline</span></h2>
+        </div>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="timeline-date">Aug 2024 – Present</div>
+              <div class="timeline-title">AWS Developer</div>
+              <div class="timeline-org">@ School Fuel</div>
+              <div class="timeline-desc">Building React-based student and teacher dashboards for the Kairos platform. Collaborating with backend teams on AWS Lambda services, debugging APIs and refining JSON contracts.</div>
+            </div>
+            <div class="timeline-spacer"></div>
+            <div class="timeline-empty"></div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-empty"></div>
+            <div class="timeline-spacer"></div>
+            <div class="timeline-card">
+              <div class="timeline-date">Expected May 2025</div>
+              <div class="timeline-title">M.S. Computer Science</div>
+              <div class="timeline-org">@ Arizona State University</div>
+              <div class="timeline-desc">GPA: 3.87/4.0. Coursework includes Data Processing at Scale, Applied Cryptography, and Semantic Web Mining.</div>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="timeline-date">2023</div>
+              <div class="timeline-title">AI & ML Intern</div>
+              <div class="timeline-org">@ Tequed Labs</div>
+              <div class="timeline-desc">Built machine learning models using Random Forests, SVMs, Linear Regression, and k-means clustering to improve customer segmentation and behavior analysis.</div>
+            </div>
+            <div class="timeline-spacer"></div>
+            <div class="timeline-empty"></div>
+            <div class="timeline-dot"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CONTACT ─── -->
+    <section id="contact">
+      <div class="contact-inner">
+        <div class="contact-header">
+          <div class="section-label">GET IN TOUCH</div>
+          <h2 class="section-title">Let's <span class="gold">Connect</span></h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-cards">
+            <a href="mailto:mpodilis@asu.edu" class="contact-card" id="contact-email">
+              <div class="contact-icon">✉️</div>
+              <div>
+                <div class="contact-card-label">Email</div>
+                <div class="contact-card-value">mpodilis@asu.edu</div>
+              </div>
+            </a>
+            <a href="tel:+16232735240" class="contact-card" id="contact-phone">
+              <div class="contact-icon">📞</div>
+              <div>
+                <div class="contact-card-label">Phone</div>
+                <div class="contact-card-value">+1 (623) 273-5240</div>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/mohan-ps" target="_blank" rel="noopener noreferrer" class="contact-card" id="contact-linkedin">
+              <div class="contact-icon">💼</div>
+              <div>
+                <div class="contact-card-label">LinkedIn</div>
+                <div class="contact-card-value">/in/mohan-ps</div>
+              </div>
+            </a>
+            <a href="https://github.com/MohanPS10" target="_blank" rel="noopener noreferrer" class="contact-card" id="contact-github">
+              <div class="contact-icon">💻</div>
+              <div>
+                <div class="contact-card-label">GitHub</div>
+                <div class="contact-card-value">MohanPS10</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="contact-cta">
+            <h3>Ready to <span class="gold">Play?</span></h3>
+            <p>Whether you have a project, a role, or just want to connect — I'd love to hear from you. Let's build something great together.</p>
+            <a href="mailto:mpodilis@asu.edu" class="btn-send-email" id="btn-send-email">Send Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="site-footer">
+      <div class="footer-logo">
+        <div class="logo-box">MN</div>
+        <span style="color:var(--text-muted);">MOHAN PS · Software Engineer</span>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div style="color:var(--text-muted); font-size:13px;">© 2025 Mohan Podili</div>
+    </footer>
+
+  </div>
+
+  <script>
+    // ── Particle canvas
+    (function() {
+      const canvas = document.getElementById('particles-canvas');
+      const ctx = canvas.getContext('2d');
+      let w, h, particles = [];
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+
+      function createParticles() {
+        particles = [];
+        const count = Math.floor((w * h) / 12000);
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 1.2 + 0.2,
+            dx: (Math.random() - 0.5) * 0.25,
+            dy: (Math.random() - 0.5) * 0.25,
+            alpha: Math.random() * 0.5 + 0.08,
+            color: Math.random() > 0.6 ? '255,215,0' : '59,130,246',
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${p.color},${p.alpha})`;
+          ctx.fill();
+          p.x += p.dx;
+          p.y += p.dy;
+          if (p.x < 0 || p.x > w) p.dx *= -1;
+          if (p.y < 0 || p.y > h) p.dy *= -1;
+        });
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', () => { resize(); createParticles(); });
+      resize();
+      createParticles();
+      draw();
+    })();
+
+    // ── Skill bar animation on scroll
+    function animateSkills() {
+      const cards = document.querySelectorAll('.skill-card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const pct = entry.target.getAttribute('data-skill');
+            const bar = entry.target.querySelector('.skill-bar-fill');
+            setTimeout(() => { bar.style.width = pct + '%'; }, 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      cards.forEach(c => observer.observe(c));
+    }
+    animateSkills();
+
+    // ── Project card toggle
+    function toggleProject(el) {
+      el.classList.toggle('expanded');
+      const hint = el.querySelector('.project-expand-hint');
+      if (el.classList.contains('expanded')) {
+        hint.textContent = 'Click to collapse ↑';
+      } else {
+        hint.textContent = 'Click to expand ↓';
+      }
+    }
+
+    // ── Active nav on scroll
+    const sections = ['home','about','skills','projects','experience','contact'];
+    const navLinks = {};
+    sections.forEach(id => navLinks[id] = document.getElementById('nav-' + id));
+
+    const sectionEls = sections.map(id => document.getElementById(id));
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY + 120;
+      let current = 'home';
+      sectionEls.forEach((el, i) => {
+        if (el && el.offsetTop <= scrollY) {
+          current = sections[i];
+        }
+      });
+      Object.values(navLinks).forEach(a => a && a.classList.remove('active'));
+      if (navLinks[current]) navLinks[current].classList.add('active');
+    });
+  </script>
+</body>
+</html>
