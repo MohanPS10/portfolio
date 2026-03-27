@@ -12,15 +12,72 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: rgb(5, 8, 16);
-      --gold: rgb(255, 215, 0);
-      --blue: rgb(37, 99, 235);
-      --blue-light: rgb(59, 130, 246);
-      --text-main: #ffffff;
-      --text-muted: #94a3b8;
-      --card-bg: rgba(0, 0, 0, 0.4);
-      --card-border: rgba(37, 99, 235, 0.2);
-      --card-bg-hover: rgba(37, 99, 235, 0.08);
+      --bg: rgb(3, 6, 18);
+      --bg2: rgb(6, 12, 28);
+      --gold: #C9A84C;
+      --gold-bright: #FFD700;
+      --gold-pale: #E8C96A;
+      --gold-dark: #9A7A2E;
+      --gold-glow: rgba(201, 168, 76, 0.35);
+      --text-main: #F0E6C8;
+      --text-muted: #8a9bb5;
+      --card-bg: rgba(8, 16, 36, 0.75);
+      --card-border: rgba(201, 168, 76, 0.25);
+      --card-bg-hover: rgba(201, 168, 76, 0.06);
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    @keyframes totyGlow {
+      0%, 100% { text-shadow: 0 0 20px rgba(255,215,0,0.4), 0 0 60px rgba(201,168,76,0.2); }
+      50%       { text-shadow: 0 0 40px rgba(255,215,0,0.7), 0 0 100px rgba(201,168,76,0.4); }
+    }
+    @keyframes borderPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(201,168,76,0.2), inset 0 0 40px rgba(201,168,76,0.03); }
+      50%       { box-shadow: 0 0 40px rgba(255,215,0,0.4), inset 0 0 60px rgba(201,168,76,0.08); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes footballFloat {
+      0%   { transform: translateY(0px) rotate(0deg); }
+      33%  { transform: translateY(-18px) rotate(120deg); }
+      66%  { transform: translateY(-8px) rotate(240deg); }
+      100% { transform: translateY(0px) rotate(360deg); }
+    }
+    @keyframes footballDrift {
+      0%   { transform: translate(0px, 0px) rotate(0deg); opacity: 0.18; }
+      25%  { transform: translate(12px, -22px) rotate(90deg); opacity: 0.25; }
+      50%  { transform: translate(-8px, -38px) rotate(180deg); opacity: 0.18; }
+      75%  { transform: translate(-18px, -15px) rotate(270deg); opacity: 0.22; }
+      100% { transform: translate(0px, 0px) rotate(360deg); opacity: 0.18; }
+    }
+    @keyframes scanLine {
+      0%   { top: -4px; opacity: 0.5; }
+      100% { top: 110%; opacity: 0; }
+    }
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; } 50% { opacity: 0; }
+    }
+    @keyframes ratingPop {
+      0%   { transform: scale(0.7); opacity: 0; }
+      70%  { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to   { opacity: 1; transform: translateX(0); }
     }
 
     html { scroll-behavior: smooth; }
@@ -53,9 +110,9 @@
       align-items: center;
       justify-content: space-between;
       padding: 16px 40px;
-      background: rgba(10, 22, 40, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(37, 99, 235, 0.15);
+      background: rgba(3, 7, 20, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
     }
 
     .nav-logo {
@@ -118,22 +175,25 @@
 
     .btn-hire-nav {
       padding: 9px 24px;
-      border-radius: 4px;
-      background: linear-gradient(135deg, var(--blue), var(--blue-light));
-      color: #fff;
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-pale));
+      background-size: 200% auto;
+      color: #080808;
       font-family: 'Rajdhani', sans-serif;
       font-weight: 700;
       font-size: 15px;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       border: none;
       cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: background-position 0.4s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
     }
 
     .btn-hire-nav:hover {
-      opacity: 0.88;
+      background-position: right center;
       transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(255,215,0,0.5);
     }
 
     /* ─── WRAPPER ─── */
@@ -162,13 +222,15 @@
       line-height: 1.1;
     }
 
-    .gold { color: var(--gold); }
+    .gold { color: var(--gold-bright); }
 
     .blue-grad {
-      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-pale) 50%, var(--gold) 100%);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: shimmer 4s linear infinite;
     }
 
     .stars {
@@ -180,22 +242,111 @@
       vertical-align: middle;
     }
 
+    /* ─── HERO CS BANNER ─── */
+    .cs-banner {
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+      display: inline-block;
+    }
+    .cs-banner-rated {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.65em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.65);
+      margin-bottom: 4px;
+    }
+    .cs-banner-mid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 4px;
+    }
+    .cs-banner-ball {
+      font-size: 20px;
+      animation: footballFloat 3.5s ease-in-out infinite;
+      display: inline-block;
+    }
+    .cs-banner-ball:nth-child(3) {
+      animation-delay: -1.75s;
+    }
+    .cs-banner-num {
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 45%, var(--gold-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: totyGlow 3s ease-in-out infinite, ratingPop 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+      animation-delay: 0s, 0.3s;
+    }
+    .cs-banner-engineer {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--gold-pale), var(--gold-bright), var(--gold-pale));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      margin-bottom: 4px;
+    }
+    .cs-banner-divider {
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 10px auto 0;
+    }
+
+    /* ─── FLOATING FOOTBALL bg ─── */
+    .hero-football-bg {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      font-size: 52px;
+      animation: footballDrift 7s ease-in-out infinite;
+      opacity: 0.18;
+      user-select: none;
+    }
+    .hero-football-bg.fb1 { top: 12%; right: 8%; animation-duration: 8s; font-size: 42px; }
+    .hero-football-bg.fb2 { bottom: 22%; left: 6%; animation-duration: 11s; animation-delay: -4s; font-size: 30px; opacity: 0.12; }
+
+    /* ─── PLAYER CARD scan line ─── */
+    .player-card .card-scan {
+      position: absolute;
+      left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(255,215,0,0.5), transparent);
+      top: -4px;
+      animation: scanLine 4s ease-in-out infinite;
+      pointer-events: none;
+      border-radius: 2px;
+    }
+
     /* ─── HERO TOTY BADGE ─── */
     .toty-badge {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: rgba(37,99,235,0.15);
-      border: 1px solid rgba(37,99,235,0.3);
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.35);
       border-radius: 99px;
-      padding: 7px 18px;
+      padding: 7px 20px;
       margin-bottom: 24px;
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.12em;
     }
-    .toty-badge-star { color: var(--gold); font-size: 16px; }
-    .toty-badge-label { color: var(--gold); text-transform: uppercase; letter-spacing: 0.15em; }
+    .toty-badge-star { color: var(--gold-bright); font-size: 16px; }
+    .toty-badge-label { color: var(--gold-pale); text-transform: uppercase; letter-spacing: 0.15em; }
     .toty-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: rgb(34,197,94); }
     .toty-badge-avail { color: var(--text-muted); font-size: 13px; text-transform: none; letter-spacing: 0.02em; }
 
@@ -229,14 +380,36 @@
       font-weight: 700;
       line-height: 1.05;
       margin-bottom: 20px;
+      color: var(--text-main);
     }
 
     .hero-role {
-      font-size: 22px;
-      color: var(--text-muted);
+      font-size: 20px;
+      color: var(--gold-pale);
       margin-bottom: 20px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
+      opacity: 0.9;
     }
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--gold);
+      margin-left: 3px;
+      vertical-align: middle;
+      animation: cursorBlink 1s step-end infinite;
+    }
+
+    /* ─── HERO staggered entrance ─── */
+    .hero-text-col > * {
+      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .hero-text-col > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero-text-col > *:nth-child(2) { animation-delay: 0.18s; }
+    .hero-text-col > *:nth-child(3) { animation-delay: 0.30s; }
+    .hero-text-col > *:nth-child(4) { animation-delay: 0.42s; }
+    .hero-text-col > *:nth-child(5) { animation-delay: 0.54s; }
+    .hero-text-col > *:nth-child(6) { animation-delay: 0.66s; }
 
     .hero-desc {
       font-size: 17px;
@@ -254,23 +427,25 @@
 
     .btn-primary {
       padding: 13px 34px;
-      border-radius: 4px;
-      background: linear-gradient(135deg, var(--blue), var(--blue-light));
-      color: #fff;
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-pale) 100%);
+      background-size: 200% auto;
+      color: #070707;
       font-family: 'Rajdhani', sans-serif;
       font-weight: 700;
       font-size: 16px;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       cursor: pointer;
       border: none;
-      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      transition: background-position 0.4s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 6px 24px rgba(201,168,76,0.4);
     }
 
     .btn-primary:hover {
-      opacity: 0.9;
+      background-position: right center;
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(37,99,235,0.5);
+      box-shadow: 0 12px 36px rgba(255,215,0,0.55);
     }
 
     .btn-outline {
@@ -305,20 +480,31 @@
       width: 280px;
       height: 400px;
       position: relative;
-      background: linear-gradient(160deg, #0a1628 0%, #050810 40%, #020408 100%);
+      background: linear-gradient(160deg, #090d1f 0%, #05080f 50%, #020308 100%);
       border: 2px solid var(--gold);
       border-radius: 12px;
-      box-shadow: 0 0 40px rgba(255,215,0,0.2), inset 0 0 60px rgba(37,99,235,0.05);
+      box-shadow: 0 0 40px var(--gold-glow), inset 0 0 80px rgba(201,168,76,0.04);
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 20px 16px;
       transition: transform 0.4s, box-shadow 0.4s;
+      animation: borderPulse 4s ease-in-out infinite;
+    }
+
+    .player-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, transparent 40%, transparent 60%, rgba(201,168,76,0.1) 100%);
+      pointer-events: none;
     }
 
     .player-card:hover {
-      transform: translateY(-8px) rotateY(3deg);
-      box-shadow: 0 0 60px rgba(255,215,0,0.35), inset 0 0 60px rgba(255,215,0,0.06);
+      transform: translateY(-10px) rotateY(4deg);
+      box-shadow: 0 0 80px rgba(255,215,0,0.5), inset 0 0 80px rgba(255,215,0,0.08);
+      animation: none;
     }
 
     .card-badge {
@@ -481,13 +667,30 @@
       border: 1px solid var(--card-border);
       border-radius: 8px;
       padding: 24px;
-      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
     .skill-card:hover {
-      border-color: rgba(255,215,0,0.5);
+      border-color: rgba(201,168,76,0.5);
       background: var(--card-bg-hover);
       transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.15);
+    }
+
+    .skill-card:hover::before {
+      opacity: 1;
     }
 
     .skill-header {
@@ -537,9 +740,12 @@
     .skill-bar-fill {
       height: 100%;
       border-radius: 99px;
-      background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--gold));
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-bright));
+      background-size: 200% auto;
       width: 0;
       transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: shimmer 3s linear infinite;
+      box-shadow: 0 0 8px rgba(255,215,0,0.4);
     }
 
     /* ─── PROJECTS ─── */
@@ -579,7 +785,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--blue), var(--gold));
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-bright), var(--gold-pale));
       opacity: 0;
       transition: opacity 0.3s;
     }
@@ -905,24 +1111,27 @@
     .btn-send-email {
       width: 100%;
       padding: 15px;
-      border-radius: 4px;
-      background: linear-gradient(135deg, var(--blue), var(--blue-light));
-      color: #fff;
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-pale) 100%);
+      background-size: 200% auto;
+      color: #080808;
       font-family: 'Rajdhani', sans-serif;
       font-weight: 700;
       font-size: 17px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       cursor: pointer;
       border: none;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: background-position 0.4s, transform 0.2s, box-shadow 0.2s;
       text-align: center;
       display: block;
+      box-shadow: 0 6px 24px rgba(201,168,76,0.4);
     }
 
     .btn-send-email:hover {
-      opacity: 0.88;
+      background-position: right center;
       transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(255,215,0,0.55);
     }
 
     /* ─── FOOTER ─── */
@@ -1012,20 +1221,40 @@
   <div class="page-wrapper">
 
     <!-- ─── HERO ─── -->
-    <section id="home">
+    <section id="home" style="position:relative; overflow:hidden;">
+      <!-- subtle floating footballs in hero background -->
+      <span class="hero-football-bg fb1" aria-hidden="true">⚽</span>
+      <span class="hero-football-bg fb2" aria-hidden="true">⚽</span>
+
       <div class="hero-inner">
         <div class="hero-text-col">
+          <!-- CS-themed FIFA-style banner -->
+          <div class="cs-banner">
+            <span class="cs-banner-rated">R &nbsp; A &nbsp; T &nbsp; E &nbsp; D</span>
+            <div class="cs-banner-mid">
+              <span class="cs-banner-ball">⚽</span>
+              <span class="cs-banner-num">99</span>
+              <span class="cs-banner-ball">⚽</span>
+            </div>
+            <span class="cs-banner-engineer">S &nbsp; O &nbsp; F &nbsp; T &nbsp; W &nbsp; A &nbsp; R &nbsp; E &nbsp; &nbsp; E &nbsp; N &nbsp; G &nbsp; I &nbsp; N &nbsp; E &nbsp; E &nbsp; R</span>
+            <div class="cs-banner-divider"></div>
+          </div>
+
           <div class="toty-badge">
             <span class="toty-badge-star">★</span>
-            <span class="toty-badge-label">Team of the Year</span>
+            <span class="toty-badge-label">Full-Stack · AWS · ML</span>
             <span class="toty-badge-dot"></span>
-            <span class="toty-badge-avail">Available for opportunities</span>
+            <span class="toty-badge-avail">Open to opportunities</span>
           </div>
+
           <h1 class="hero-name">
             Hi, I'm <span class="blue-grad">Mohan</span> <span class="gold">Podili</span>
           </h1>
-          <p class="hero-role">Software Engineer | Full-Stack | AWS | Machine Learning</p>
+
+          <p class="hero-role" id="hero-role-text">Software Engineer<span class="cursor"></span></p>
+
           <p class="hero-desc">Grad student at Arizona State University building full-stack experiences on AWS and applying machine learning to real-world problems.</p>
+
           <div class="hero-btns" style="justify-content:center;">
             <a href="mailto:mpodilis@asu.edu" class="btn-primary" id="btn-hire">Hire Me</a>
             <a href="MPS_2025NEW.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer" id="btn-cv">Download CV</a>
@@ -1048,7 +1277,8 @@
                 <div class="rating">99</div>
                 <div class="pos">SWE</div>
               </div>
-              <div class="card-toty">TOTY</div>
+              <div class="card-toty">ELITE</div>
+              <div class="card-scan"></div>
               <div class="card-avatar">MN</div>
               <div class="card-name">MOHAN PS</div>
               <div class="card-divider"></div>
@@ -1456,8 +1686,8 @@
             r: Math.random() * 1.2 + 0.2,
             dx: (Math.random() - 0.5) * 0.25,
             dy: (Math.random() - 0.5) * 0.25,
-            alpha: Math.random() * 0.5 + 0.08,
-            color: Math.random() > 0.6 ? '255,215,0' : '59,130,246',
+            alpha: Math.random() * 0.55 + 0.1,
+            color: Math.random() > 0.4 ? '255,215,0' : '201,168,76',
           });
         }
       }
@@ -1499,6 +1729,69 @@
       cards.forEach(c => observer.observe(c));
     }
     animateSkills();
+
+    // ── Typewriter role cycler
+    (function() {
+      const roles = [
+        'Full-Stack Engineer',
+        'AWS Cloud Developer',
+        'ML / AI Engineer',
+        'React · Node · Python',
+        'M.S. CS @ ASU · GPA 3.87',
+      ];
+      const el = document.getElementById('hero-role-text');
+      if (!el) return;
+      const cursor = el.querySelector('.cursor');
+      let ri = 0, ci = 0, deleting = false;
+
+      function tick() {
+        const word = roles[ri];
+        if (deleting) {
+          ci--;
+        } else {
+          ci++;
+        }
+        // set text without wiping cursor span
+        el.childNodes[0].textContent = word.slice(0, ci);
+
+        let delay = deleting ? 45 : 80;
+        if (!deleting && ci === word.length) {
+          delay = 1800; deleting = true;
+        } else if (deleting && ci === 0) {
+          deleting = false;
+          ri = (ri + 1) % roles.length;
+          delay = 300;
+        }
+        setTimeout(tick, delay);
+      }
+      // Ensure first text node exists
+      if (el.childNodes[0] && el.childNodes[0].nodeType === 3) {
+        setTimeout(tick, 900);
+      }
+    })();
+
+    // ── Scroll-entrance animations for cards & timeline items
+    (function() {
+      const targets = document.querySelectorAll(
+        '.skill-card, .project-card, .timeline-card, .contact-card, .contact-cta'
+      );
+      const style = document.createElement('style');
+      style.textContent = `
+        .scroll-hidden { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+        .scroll-visible { opacity: 1 !important; transform: translateY(0) !important; }
+      `;
+      document.head.appendChild(style);
+      targets.forEach((el, i) => {
+        el.classList.add('scroll-hidden');
+        el.style.transitionDelay = (i % 4) * 0.08 + 's';
+      });
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('scroll-visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      targets.forEach(el => obs.observe(el));
+    })();
 
     // ── Project card toggle
     function toggleProject(el) {
